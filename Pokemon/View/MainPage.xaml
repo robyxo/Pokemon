@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pokemon.MainPage"
+             xmlns:vm="clr-namespace:Pokemon.ViewModels"
+             Title="Lista Pokemon">
+
+    <ContentPage.BindingContext>
+        <vm:PokemonViewModel />
+    </ContentPage.BindingContext>
+
+    <!-- Grid Layout -->
+        <Grid Padding="10">
+            <!-- Definisci le righe per la disposizione del contenuto -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Picker -->
+            <RowDefinition Height="*" />
+            <!-- CollectionView (scrollabile) -->
+        </Grid.RowDefinitions>
+        <!-- Picker per selezionare il tipo di Pokémon -->
+            <Picker ItemsSource="{Binding PokemonTypes}"
+                SelectedItem="{Binding SelectedType}"
+                Title="Seleziona Tipo" 
+                Margin="10"
+                Grid.Row="0" />
+            
+            <!-- CollectionView per mostrare i Pokémon -->
+            <CollectionView ItemsSource="{Binding Pokemons}"
+                        RemainingItemsThreshold="2"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}"
+                        Grid.Row="1"
+                        VerticalOptions="FillAndExpand">
+
+                <!-- Layout con colonne multiple -->
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+
+                <!-- Template per ogni elemento -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Frame HasShadow="True" BorderColor="Black" CornerRadius="20" Padding="0">
+                                <Frame.GestureRecognizers>
+                                    <!-- Aggiungi qui il comando per l'eventuale navigazione -->
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.NavigateToDetailCommand}"
+                                                      CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <!-- Box Immagine -->
+                                    <Image Source="{Binding ImageUrl}" 
+                                       WidthRequest="120" 
+                                       HeightRequest="120" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Start" />
+
+                                    <!-- Linea orizzontale -->
+                                    <BoxView HeightRequest="3" Color="Black" Margin="0" />
+
+                                    <!-- Dettagli Pokémon -->
+                                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="5">
+                                        <Label Text="{Binding Id}" 
+                                           FontSize="16" 
+                                           TextColor="Black" 
+                                           HorizontalOptions="Center" />
+
+                                        <!-- Linea verticale -->
+                                        <BoxView WidthRequest="3" Color="Black" Margin="-5" />
+                                        <Label Text="{Binding Name}" 
+                                           FontSize="16" 
+                                           TextColor="Black" 
+                                           HorizontalOptions="Center" />
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <!-- Footer per il caricamento -->
+                <CollectionView.Footer>
+                    <Grid Padding="10" VerticalOptions="Center" HorizontalOptions="Center">
+                        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+                    </Grid>
+                </CollectionView.Footer>
+            </CollectionView>
+        </Grid>
+</ContentPage>

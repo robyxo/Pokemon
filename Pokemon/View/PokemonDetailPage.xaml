@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pokemon.PokemonDetailPage"
+             Shell.NavBarIsVisible="False"
+             Title="PokemonDetailPage">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="20">
+                <StackLayout Orientation="Horizontal" Padding="10">
+                
+                <Label Text="Dettaglio Pokemon" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="0,0,100,0"/>
+                    <!-- Pulsante per tornare indietro -->
+                    <Button Text="X" FontSize="24" HorizontalOptions="End" Clicked="OnCloseClicked" />
+                </StackLayout>
+                <!-- Border con bordi arrotondati e ombra -->
+                <Frame HasShadow="True" BorderColor="Black" CornerRadius="20" >
+                    <StackLayout HorizontalOptions="Center">
+                        <!-- Immagine del Pokémon -->
+                        <Image Source="{Binding ImageUrl}" 
+                           WidthRequest="250" 
+                           HeightRequest="250" 
+                           HorizontalOptions="Center" />
+
+                        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                      ColumnDefinitions="Auto, Auto, Auto" 
+                      ColumnSpacing="40" 
+                      RowSpacing="5">
+
+                            <!-- Nome del Pokémon -->
+                            <Label Text="Nome" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" TextColor="Black"  />
+                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" TextColor="Black" />
+
+                            <Label Text="Altezza" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Height, StringFormat='{0} m'}" Grid.Row="1" Grid.Column="1" TextColor="Black"/>
+
+                            <Label Text="Peso" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Weight, StringFormat='{0} kg'}" Grid.Row="2" Grid.Column="1" TextColor="Black"/>
+
+                            <!-- Tipo -->
+                            <Label Text="Tipo" Grid.Row="3" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <CollectionView Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Types}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding Type.Name}" TextColor="Black"/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <!-- Abilita -->
+                            <Label Text="Abilità" Grid.Row="4" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <CollectionView Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Abilities}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding Ability.Name}" TextColor="Black"/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <!-- Statistiche -->
+                            <Label Text="Statistiche" Grid.Row="5" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <CollectionView Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Stats}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <!-- Nome della statistica -->
+                                            <Label Text="{Binding Stat.Name}" TextColor="Black"/>
+                                            <Label Text=":" TextColor="Black" Margin="0,0,5,0"/>
+                                            <!-- Valore di BaseStat -->
+                                            <Label Text="{Binding BaseStat}" TextColor="Black" FontAttributes="Bold"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <!-- Mosse -->
+                            <Label Text="Mosse" Grid.Row="6" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <CollectionView Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Moves}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding Move.Name}" TextColor="Black"/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+
+
+</ContentPage>
