@@ -9,15 +9,15 @@
         <ScrollView>
             <StackLayout Padding="20" Spacing="20">
                 <StackLayout Orientation="Horizontal" Padding="10">
-                
-                <Label Text="Dettaglio Pokemon" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="0,0,100,0"/>
-                    <!-- Pulsante per tornare indietro -->
+
+                    <Label Text="Pokemon Detail" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="0,0,100,0"/>
+                    <!-- Back button -->
                     <Button Text="X" FontSize="24" HorizontalOptions="End" Clicked="OnCloseClicked" />
                 </StackLayout>
-                <!-- Border con bordi arrotondati e ombra -->
+                <!-- Border with rounded edges -->
                 <Frame HasShadow="True" BorderColor="Black" CornerRadius="20" >
                     <StackLayout HorizontalOptions="Center">
-                        <!-- Immagine del Pokémon -->
+                        <!-- Image Pokémon -->
                         <Image Source="{Binding ImageUrl}" 
                            WidthRequest="250" 
                            HeightRequest="250" 
@@ -28,18 +28,18 @@
                       ColumnSpacing="40" 
                       RowSpacing="5">
 
-                            <!-- Nome del Pokémon -->
-                            <Label Text="Nome" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" TextColor="Black"  />
+                            <!-- Name of the Pokémon -->
+                            <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" TextColor="Black"  />
                             <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" TextColor="Black" />
 
-                            <Label Text="Altezza" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="Height" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
                             <Label Text="{Binding Height, StringFormat='{0} m'}" Grid.Row="1" Grid.Column="1" TextColor="Black"/>
 
-                            <Label Text="Peso" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="Weight" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
                             <Label Text="{Binding Weight, StringFormat='{0} kg'}" Grid.Row="2" Grid.Column="1" TextColor="Black"/>
 
-                            <!-- Tipo -->
-                            <Label Text="Tipo" Grid.Row="3" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <!-- Type -->
+                            <Label Text="Type" Grid.Row="3" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
                             <CollectionView Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Types}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
@@ -48,8 +48,8 @@
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
-                            <!-- Abilita -->
-                            <Label Text="Abilità" Grid.Row="4" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <!-- Ability -->
+                            <Label Text="Ability" Grid.Row="4" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
                             <CollectionView Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Abilities}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
@@ -58,24 +58,24 @@
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
-                            <!-- Statistiche -->
-                            <Label Text="Statistiche" Grid.Row="5" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <!-- Statistics -->
+                            <Label Text="Statistics" Grid.Row="5" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
                             <CollectionView Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Stats}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout Orientation="Horizontal">
-                                            <!-- Nome della statistica -->
+                                            <!-- Statistic name -->
                                             <Label Text="{Binding Stat.Name}" TextColor="Black"/>
                                             <Label Text=":" TextColor="Black" Margin="0,0,5,0"/>
-                                            <!-- Valore di BaseStat -->
+                                            <!-- BaseStat Value -->
                                             <Label Text="{Binding BaseStat}" TextColor="Black" FontAttributes="Bold"/>
                                         </StackLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
-                            <!-- Mosse -->
-                            <Label Text="Mosse" Grid.Row="6" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <!-- Moves -->
+                            <Label Text="Moves" Grid.Row="6" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
                             <CollectionView Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Moves}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>

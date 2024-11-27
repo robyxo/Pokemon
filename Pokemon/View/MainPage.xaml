@@ -3,69 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pokemon.MainPage"
              xmlns:vm="clr-namespace:Pokemon.ViewModels"
-             Title="Lista Pokemon">
+             Title="List Pokèmon">
 
     <ContentPage.BindingContext>
         <vm:PokemonViewModel />
     </ContentPage.BindingContext>
 
-    <!-- Grid Layout -->
+            <!-- Grid Layout -->
         <Grid Padding="10">
-            <!-- Definisci le righe per la disposizione del contenuto -->
+        <!-- Defines the rows for the content layout -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <!-- Picker -->
             <RowDefinition Height="*" />
-            <!-- CollectionView (scrollabile) -->
+            <!-- CollectionView (scrollable) -->
         </Grid.RowDefinitions>
-        <!-- Picker per selezionare il tipo di Pokémon -->
+        <!-- Picker to select the type of Pokémon -->
             <Picker ItemsSource="{Binding PokemonTypes}"
                 SelectedItem="{Binding SelectedType}"
-                Title="Seleziona Tipo" 
+                Title="Select Type"
                 Margin="10"
                 Grid.Row="0" />
-            
-            <!-- CollectionView per mostrare i Pokémon -->
+
+        <!-- CollectionView to show Pokémon -->
             <CollectionView ItemsSource="{Binding Pokemons}"
                         RemainingItemsThreshold="2"
                         RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}"
                         Grid.Row="1"
                         VerticalOptions="FillAndExpand">
 
-                <!-- Layout con colonne multiple -->
+                <!-- Multi-column layout -->
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
 
-                <!-- Template per ogni elemento -->
+                <!-- Templates for each element -->
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
                             <Frame HasShadow="True" BorderColor="Black" CornerRadius="20" Padding="0">
                                 <Frame.GestureRecognizers>
-                                    <!-- Aggiungi qui il comando per l'eventuale navigazione -->
+                                    <!-- Command for possible navigation -->
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.NavigateToDetailCommand}"
                                                       CommandParameter="{Binding .}" />
                                 </Frame.GestureRecognizers>
                                 <StackLayout>
-                                    <!-- Box Immagine -->
+                                    <!-- Box Image -->
                                     <Image Source="{Binding ImageUrl}" 
                                        WidthRequest="120" 
                                        HeightRequest="120" 
                                        HorizontalOptions="Center" 
                                        VerticalOptions="Start" />
 
-                                    <!-- Linea orizzontale -->
+                                    <!-- Horizontal line -->
                                     <BoxView HeightRequest="3" Color="Black" Margin="0" />
 
-                                    <!-- Dettagli Pokémon -->
+                                     <!-- Pokémon Details -->
                                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="5">
                                         <Label Text="{Binding Id}" 
                                            FontSize="16" 
                                            TextColor="Black" 
                                            HorizontalOptions="Center" />
 
-                                        <!-- Linea verticale -->
+                                         <!-- Vertical line -->
                                         <BoxView WidthRequest="3" Color="Black" Margin="-5" />
                                         <Label Text="{Binding Name}" 
                                            FontSize="16" 
@@ -78,7 +78,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
-                <!-- Footer per il caricamento -->
+                <!-- Footer for loading -->
                 <CollectionView.Footer>
                     <Grid Padding="10" VerticalOptions="Center" HorizontalOptions="Center">
                         <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />

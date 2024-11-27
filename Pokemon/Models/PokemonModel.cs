@@ -5,8 +5,8 @@ public class Poke
     public string Name { get; set; }
     public int Id { get; set; }
     public string ImageUrl { get; set; }
-    public int Height { get; set; } // Altezza in decimetri
-    public int Weight { get; set; } // Peso in ettogrammi
+    public int Height { get; set; } // Height in decimeters
+    public int Weight { get; set; } // Weight in hectograms
     public List<PokemonTypeSlot> Types { get; set; }
     public List<PokemonAbilitySlot> Abilities { get; set; }
     public List<PokemonMove> Moves { get; set; }

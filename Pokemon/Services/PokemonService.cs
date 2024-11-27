@@ -49,8 +49,9 @@ internal class PokemonService
         var response = await _httpClient.GetAsync("type");
         if (response.IsSuccessStatusCode)
         {
+            //Convert the response into json and assign it data. I used dynamic for the complexity of the json.
             var data = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
-            var types = new List<string> { "Nessuno" }; // "Nessuno" è l'opzione predefinita
+            var types = new List<string> { "Nobody" }; // Default option
             foreach (var type in data.results)
             {
                 types.Add(type.name.ToString());
@@ -68,23 +69,24 @@ internal class PokemonService
             var data = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
             var pokemons = new List<Poke>();
 
-            // Itera attraverso la lista di Pokémon per quel tipo
+            // Iterate through the list of Pokémon for that type
             foreach (var pokemon in data.pokemon)
             {
                 var name = pokemon.pokemon.name.ToString();
                 var url = pokemon.pokemon.url.ToString();
 
-                // Estrai l'ID dal URL
+                // Extract ID from URL
                 var parts = url.Split('/');
                 var id = parts[parts.Length - 2];
-                var pokemonId = int.Parse(id); // Converti l'ID in un intero
+                // Convert ID to integer
+                var pokemonId = int.Parse(id);
 
-                // Aggiungi il Pokémon alla lista
+                // Add Pokémon to the list
                 pokemons.Add(new Poke
                 {
                     Name = name,
                     Id = pokemonId,
-                    ImageUrl = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemonId}.png" // URL dell'immagine
+                    ImageUrl = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemonId}.png" // Image URL
                 });
             }
 
@@ -101,21 +103,21 @@ internal class PokemonService
             if (response.IsSuccessStatusCode)
             {
                 var data = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
-                // Creiamo un oggetto Poke
+                // Let's create a Poke object
                 var pokemon = new Poke
                 {
                     Id = id,
                     Name = data.name,
                     ImageUrl = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png",
-                    Height = data.height / 10.0, // Converti da decimetri a metri
-                    Weight = data.weight / 10.0, // Converti da ettogrammi a kg
+                    Height = data.height / 10.0, // Convert from decimeters to meters
+                    Weight = data.weight / 10.0, // Convert from hectograms to kg
                     Types = new List<PokemonTypeSlot>(),
                     Abilities = new List<PokemonAbilitySlot>(),
                     Moves = new List<PokemonMove>(),
                     Stats = new List<PokemonStat>()
                 };
 
-                // Aggiungiamo i tipi (PokemonTypeSlot)
+                // Adds types (PokemonTypeSlot)
                 foreach (var type in data.types)
                 {
                     pokemon.Types.Add(new PokemonTypeSlot
@@ -127,7 +129,7 @@ internal class PokemonService
                     });
                 }
 
-                // Aggiungiamo le abilità (PokemonAbilitySlot)
+                // Adds abilities (PokemonAbilitySlot)
                 foreach (var ability in data.abilities)
                 {
                     pokemon.Abilities.Add(new PokemonAbilitySlot
@@ -139,7 +141,7 @@ internal class PokemonService
                     });
                 }
 
-                // Aggiungiamo le mosse (PokemonMove)
+                // Adds moves (PokemonMove)
                 foreach (var move in data.moves)
                 {
                     pokemon.Moves.Add(new PokemonMove
@@ -151,7 +153,7 @@ internal class PokemonService
                     });
                 }
 
-                // Aggiungiamo le statistiche (PokemonStat)
+                // Adds stats (PokemonStat)
                 foreach (var stat in data.stats)
                 {
                     pokemon.Stats.Add(new PokemonStat

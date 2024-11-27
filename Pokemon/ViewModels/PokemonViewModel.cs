@@ -12,7 +12,6 @@ internal class PokemonViewModel : BindableObject
     private bool _isLoading;
     private List<string> _pokemonTypes;
     private string _selectedType;
-
     public ObservableCollection<Poke> Pokemons { get; } = new ObservableCollection<Poke>();
 
     public ICommand LoadMoreCommand { get; }
@@ -51,7 +50,7 @@ internal class PokemonViewModel : BindableObject
             {
                 _selectedType = value;
                 OnPropertyChanged();
-                // Quando il tipo cambia, ricarica la lista dei Pokémon
+                // When the type changes, reload the Pokémon list
                 Task.Run(async () => await OnTypeChangedAsync());
             }
         }
@@ -74,11 +73,11 @@ internal class PokemonViewModel : BindableObject
     {
         if (pokemon == null) return;
 
-        // Ottieni i dettagli completi del Pokémon
+        // Get the full details of the Pokémon
         var details = await _pokemonService.GetPokemonDetailsAsync(pokemon.Id);
         if (details != null)
         {
-            // Naviga verso la pagina di dettaglio con i dettagli completi
+            // Navigate to the detail page with full details
             await Application.Current.MainPage.Navigation.PushAsync(new PokemonDetailPage(details));
         }
     }
@@ -92,17 +91,18 @@ internal class PokemonViewModel : BindableObject
     private async Task OnTypeChangedAsync()
     {
         Pokemons.Clear();
-        _nextUrl = null; // Resetta il URL per la paginazione
+        // Reset URL for pagination
+        _nextUrl = null;
 
-        // Verifica se il tipo selezionato è "Nessuno" o un tipo valido
-        if (string.IsNullOrEmpty(SelectedType) || SelectedType == "Nessuno")
+        // Check if the selected type is "Nobody" or a valid type
+        if (string.IsNullOrEmpty(SelectedType) || SelectedType == "Nobody")
         {
-            // Se "Nessuno" è selezionato, carica tutti i Pokémon con paginazione
+            // If "Nobody" is selected, loads all Pokémon with pagination
             await LoadAllPokemonsAsync();
         }
         else
         {
-            // Se un tipo specifico è selezionato, carica i Pokémon di quel tipo senza paginazione
+            // If a specific type is selected, loads Pokémon of that type without pagination.
             await LoadPokemonsByTypeAsync(SelectedType);
         }
     }
@@ -111,10 +111,10 @@ internal class PokemonViewModel : BindableObject
     {
         IsLoading = true;
 
-        // Esegui la chiamata all'API per caricare i Pokémon
+        // Make the API call to load the Pokémon
         var (allPokemons, nextUrl) = await _pokemonService.GetPokemonsAsync(_nextUrl ?? "pokemon?offset=0&limit=20");
 
-        // Aggiorna la variabile _nextUrl con il valore della paginazione
+        // Update the _nextUrl variable with the pagination value
         _nextUrl = nextUrl;
 
         if (allPokemons != null)
@@ -129,7 +129,7 @@ internal class PokemonViewModel : BindableObject
     {
         IsLoading = true;
 
-        // Chiamata API per il tipo selezionato (senza paginazione)
+        // API call for the selected type (without pagination)
         var pokemons = await _pokemonService.GetPokemonsByTypeAsync(type);
 
         if (pokemons != null)
@@ -150,7 +150,7 @@ internal class PokemonViewModel : BindableObject
 
         List<Poke> pokemons = null;
 
-        if (string.IsNullOrEmpty(SelectedType) || SelectedType == "Nessuno")
+        if (string.IsNullOrEmpty(SelectedType) || SelectedType == "Nobody")
         {
             var (allPokemons, nextUrl) = await _pokemonService.GetPokemonsAsync(_nextUrl);
             pokemons = allPokemons;
