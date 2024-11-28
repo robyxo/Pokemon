@@ -21,7 +21,8 @@
         <!-- Picker to select the type of Pokémon -->
             <Picker ItemsSource="{Binding PokemonTypes}"
                 SelectedItem="{Binding SelectedType}"
-                Title="Select Type"
+                Title="Select Type"    
+                FontFamily="PokemonGb"
                 Margin="10"
                 Grid.Row="0" />
 
@@ -61,16 +62,20 @@
                                      <!-- Pokémon Details -->
                                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="5">
                                         <Label Text="{Binding Id}" 
-                                           FontSize="16" 
+                                           FontSize="12" 
                                            TextColor="Black" 
-                                           HorizontalOptions="Center" />
+                                           HorizontalOptions="Center" 
+                                           FontFamily="PokemonGb"    
+                                               />
 
                                          <!-- Vertical line -->
                                         <BoxView WidthRequest="3" Color="Black" Margin="-5" />
                                         <Label Text="{Binding Name}" 
-                                           FontSize="16" 
+                                           FontSize="12" 
                                            TextColor="Black" 
-                                           HorizontalOptions="Center" />
+                                           HorizontalOptions="Center"
+                                           FontFamily="PokemonGb"    
+                                               />
                                     </HorizontalStackLayout>
                                 </StackLayout>
                             </Frame>

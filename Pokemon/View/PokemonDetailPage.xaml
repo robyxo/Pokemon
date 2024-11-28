@@ -10,9 +10,9 @@
             <StackLayout Padding="20" Spacing="20">
                 <StackLayout Orientation="Horizontal" Padding="10">
 
-                    <Label Text="Pokemon Detail" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="0,0,100,0"/>
+                    <Label Text="Pokemon Detail" TextColor="Black" FontSize="20" FontAttributes="Bold" Margin="0,0,30,0" FontFamily="PokemonGb"/>
                     <!-- Back button -->
-                    <Button Text="X" FontSize="24" HorizontalOptions="End" Clicked="OnCloseClicked" />
+                    <Button Text="X" FontSize="24" HorizontalOptions="End" Clicked="OnCloseClicked" FontFamily="PokemonGb"/>
                 </StackLayout>
                 <!-- Border with rounded edges -->
                 <Frame HasShadow="True" BorderColor="Black" CornerRadius="20" >
@@ -26,60 +26,60 @@
                         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
                       ColumnDefinitions="Auto, Auto, Auto" 
                       ColumnSpacing="40" 
-                      RowSpacing="5">
+                      RowSpacing="6">
 
                             <!-- Name of the Pokémon -->
-                            <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" TextColor="Black"  />
-                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" TextColor="Black" />
+                            <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10" />
+                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
 
-                            <Label Text="Height" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
-                            <Label Text="{Binding Height, StringFormat='{0} m'}" Grid.Row="1" Grid.Column="1" TextColor="Black"/>
+                            <Label Text="Height" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
+                            <Label Text="{Binding Height, StringFormat='{0} Mt'}" Grid.Row="1" Grid.Column="1" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
 
-                            <Label Text="Weight" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
-                            <Label Text="{Binding Weight, StringFormat='{0} kg'}" Grid.Row="2" Grid.Column="1" TextColor="Black"/>
+                            <Label Text="Weight" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
+                            <Label Text="{Binding Weight, StringFormat='{0} kg'}" Grid.Row="2" Grid.Column="1" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
 
                             <!-- Type -->
-                            <Label Text="Type" Grid.Row="3" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="Type" Grid.Row="3" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
                             <CollectionView Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Types}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <Label Text="{Binding Type.Name}" TextColor="Black"/>
+                                        <Label Text="{Binding Type.Name}" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
                             <!-- Ability -->
-                            <Label Text="Ability" Grid.Row="4" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="Ability" Grid.Row="4" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
                             <CollectionView Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Abilities}">
                                 <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label Text="{Binding Ability.Name}" TextColor="Black"/>
+                                    <DataTemplate >
+                                        <Label Text="{Binding Ability.Name}" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
                             <!-- Statistics -->
-                            <Label Text="Statistics" Grid.Row="5" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="Statistics" Grid.Row="5" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
                             <CollectionView Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Stats}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout Orientation="Horizontal">
                                             <!-- Statistic name -->
-                                            <Label Text="{Binding Stat.Name}" TextColor="Black"/>
-                                            <Label Text=":" TextColor="Black" Margin="0,0,5,0"/>
+                                            <Label Text="{Binding Stat.Name}" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
+                                            <Label Text=":" TextColor="Black" Margin="0,0,5,0" FontFamily="PokemonGb" FontSize="10"/>
                                             <!-- BaseStat Value -->
-                                            <Label Text="{Binding BaseStat}" TextColor="Black" FontAttributes="Bold"/>
+                                            <Label Text="{Binding BaseStat}" TextColor="Black" FontAttributes="Bold" FontFamily="PokemonGb" FontSize="10"/>
                                         </StackLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
                             <!-- Moves -->
-                            <Label Text="Moves" Grid.Row="6" Grid.Column="0" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="Moves" Grid.Row="6" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
                             <CollectionView Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Moves}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <Label Text="{Binding Move.Name}" TextColor="Black"/>
+                                        <Label Text="{Binding Move.Name}" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
