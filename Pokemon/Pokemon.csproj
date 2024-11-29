@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>Pokemon</ApplicationTitle>
+		<ApplicationTitle>Pokémon</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.pokemon</ApplicationId>

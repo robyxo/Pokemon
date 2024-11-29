@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pokemon.MainPage"
              xmlns:vm="clr-namespace:Pokemon.ViewModels"
-             Title="List Pokèmon">
+             Title="List Pokémon">
 
     <ContentPage.BindingContext>
         <vm:PokemonViewModel />
@@ -21,7 +21,7 @@
         <!-- Picker to select the type of Pokémon -->
             <Picker ItemsSource="{Binding PokemonTypes}"
                 SelectedItem="{Binding SelectedType}"
-                Title="Select Type"    
+                Title="Select Type Pokémon"    
                 FontFamily="PokemonGb"
                 Margin="10"
                 Grid.Row="0" />

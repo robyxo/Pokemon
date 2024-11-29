@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Pokemon"
     Shell.FlyoutBehavior="Disabled"
-    Title="Pokemon">
+    Title="Pokémon">
 
     <ShellContent
         Title="Home"
