@@ -51,7 +51,7 @@ internal class PokemonService
         {
             //Convert the response into json and assign it data. I used dynamic for the complexity of the json.
             var data = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
-            var types = new List<string> { "Nobody" }; // Default option
+            var types = new List<string> { "None" }; // Default option
             foreach (var type in data.results)
             {
                 types.Add(type.name.ToString());

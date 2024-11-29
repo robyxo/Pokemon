@@ -94,10 +94,10 @@ internal class PokemonViewModel : BindableObject
         // Reset URL for pagination
         _nextUrl = null;
 
-        // Check if the selected type is "Nobody" or a valid type
-        if (string.IsNullOrEmpty(SelectedType) || SelectedType == "Nobody")
+        // Check if the selected type is "None" or a valid type
+        if (string.IsNullOrEmpty(SelectedType) || SelectedType == "None")
         {
-            // If "Nobody" is selected, loads all Pokémon with pagination
+            // If "None" is selected, loads all Pokémon with pagination
             await LoadAllPokemonsAsync();
         }
         else
@@ -150,7 +150,7 @@ internal class PokemonViewModel : BindableObject
 
         List<Poke> pokemons = null;
 
-        if (string.IsNullOrEmpty(SelectedType) || SelectedType == "Nobody")
+        if (string.IsNullOrEmpty(SelectedType) || SelectedType == "None")
         {
             var (allPokemons, nextUrl) = await _pokemonService.GetPokemonsAsync(_nextUrl);
             pokemons = allPokemons;
