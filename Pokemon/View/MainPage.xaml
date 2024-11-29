@@ -9,29 +9,21 @@
         <vm:PokemonViewModel />
     </ContentPage.BindingContext>
 
-            <!-- Grid Layout -->
+        <!-- Grid Layout -->
         <Grid Padding="10">
+            
         <!-- Defines the rows for the content layout -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <!-- Picker -->
             <RowDefinition Height="*" />
+            
             <!-- CollectionView (scrollable) -->
         </Grid.RowDefinitions>
         <!-- Picker to select the type of Pokémon -->
-            <Picker ItemsSource="{Binding PokemonTypes}"
-                SelectedItem="{Binding SelectedType}"
-                Title="Select Type Pokémon"    
-                FontFamily="PokemonGb"
-                Margin="10"
-                Grid.Row="0" />
+            <Picker ItemsSource="{Binding PokemonTypes}" SelectedItem="{Binding SelectedType}" Title="Select Type Pokémon" FontFamily="PokemonGb" Margin="10" Grid.Row="0" />
 
         <!-- CollectionView to show Pokémon -->
-            <CollectionView ItemsSource="{Binding Pokemons}"
-                        RemainingItemsThreshold="2"
-                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}"
-                        Grid.Row="1"
-                        VerticalOptions="FillAndExpand">
+            <CollectionView ItemsSource="{Binding Pokemons}" RemainingItemsThreshold="2" RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}" Grid.Row="1" VerticalOptions="FillAndExpand">
 
                 <!-- Multi-column layout -->
                 <CollectionView.ItemsLayout>
@@ -44,38 +36,25 @@
                         <Grid Padding="10">
                         <Border  Stroke="Black" StrokeThickness="2" BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="0">
                             <Border.GestureRecognizers>
+                                
                                     <!-- Command for possible navigation -->
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.NavigateToDetailCommand}"
-                                                      CommandParameter="{Binding .}" />
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.NavigateToDetailCommand}" CommandParameter="{Binding .}" />
                                 </Border.GestureRecognizers>
                                 <StackLayout>
+                                    
                                     <!-- Box Image -->
-                                    <Image Source="{Binding ImageUrl}" 
-                                       WidthRequest="120" 
-                                       HeightRequest="120" 
-                                       HorizontalOptions="Center" 
-                                       VerticalOptions="Start" />
+                                    <Image Source="{Binding ImageUrl}" WidthRequest="120" HeightRequest="120" HorizontalOptions="Center" VerticalOptions="Start" />
 
                                     <!-- Horizontal line -->
                                     <BoxView HeightRequest="3" Color="Black" Margin="0" />
 
                                      <!-- Pokémon Details -->
                                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="5">
-                                        <Label Text="{Binding Id}" 
-                                           FontSize="12" 
-                                           TextColor="Black" 
-                                           HorizontalOptions="Center" 
-                                           FontFamily="PokemonGb"    
-                                               />
+                                        <Label Text="{Binding Id}" FontSize="12" TextColor="Black" HorizontalOptions="Center" FontFamily="PokemonGb" />
 
                                          <!-- Vertical line -->
                                         <BoxView WidthRequest="3" Color="Black" Margin="-5" />
-                                        <Label Text="{Binding Name}" 
-                                           FontSize="12" 
-                                           TextColor="Black" 
-                                           HorizontalOptions="Center"
-                                           FontFamily="PokemonGb"    
-                                               />
+                                            <Label Text="{Binding Name}" FontSize="12" TextColor="Black" HorizontalOptions="Center" FontFamily="PokemonGb"/>
                                     </HorizontalStackLayout>
                                 </StackLayout>
                             </Border>
