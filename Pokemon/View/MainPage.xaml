@@ -42,12 +42,12 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
-                            <Frame HasShadow="True" BorderColor="Black" CornerRadius="20" Padding="0">
-                                <Frame.GestureRecognizers>
+                        <Border  Stroke="Black" StrokeThickness="2" BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="0">
+                            <Border.GestureRecognizers>
                                     <!-- Command for possible navigation -->
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.NavigateToDetailCommand}"
                                                       CommandParameter="{Binding .}" />
-                                </Frame.GestureRecognizers>
+                                </Border.GestureRecognizers>
                                 <StackLayout>
                                     <!-- Box Image -->
                                     <Image Source="{Binding ImageUrl}" 
@@ -78,7 +78,7 @@
                                                />
                                     </HorizontalStackLayout>
                                 </StackLayout>
-                            </Frame>
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -11,30 +11,28 @@
                 <StackLayout Orientation="Horizontal" Padding="10">
 
                     <Label Text="Pokémon Detail" TextColor="Black" FontSize="18" FontAttributes="Bold" Margin="0,0,30,0" FontFamily="PokemonGb"/>
+                    
                     <!-- Back button -->
                     <Button Text="X" FontSize="24" HorizontalOptions="End" Clicked="OnCloseClicked" FontFamily="PokemonGb"/>
                 </StackLayout>
+                
                 <!-- Border with rounded edges -->
-                <Frame HasShadow="True" BorderColor="Black" CornerRadius="20" >
+                <Border  Stroke="Black" StrokeThickness="2" BackgroundColor="White" StrokeShape="RoundRectangle 20" >
                     <StackLayout HorizontalOptions="Center">
+                        
                         <!-- Image Pokémon -->
-                        <Image Source="{Binding ImageUrl}" 
-                           WidthRequest="250" 
-                           HeightRequest="250" 
-                           HorizontalOptions="Center" />
-
-                        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
-                      ColumnDefinitions="Auto, Auto, Auto" 
-                      ColumnSpacing="20" 
-                      RowSpacing="6">
-
+                        <Image Source="{Binding ImageUrl}" WidthRequest="250" HeightRequest="250" HorizontalOptions="Center" />
+                        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, Auto, Auto" ColumnSpacing="20" RowSpacing="6">
+                            
                             <!-- Name of the Pokémon -->
                             <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10" />
                             <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
 
+                            <!-- Height of the Pokémon -->
                             <Label Text="Height" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
                             <Label Text="{Binding Height, StringFormat='{0} Mt'}" Grid.Row="1" Grid.Column="1" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
 
+                            <!-- Weight of the Pokémon -->
                             <Label Text="Weight" Grid.Row="2" Grid.Column="0" FontAttributes="Bold" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
                             <Label Text="{Binding Weight, StringFormat='{0} kg'}" Grid.Row="2" Grid.Column="1" TextColor="Black" FontFamily="PokemonGb" FontSize="10"/>
 
@@ -83,10 +81,9 @@
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-
                         </Grid>
                     </StackLayout>
-                </Frame>
+                </Border>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
