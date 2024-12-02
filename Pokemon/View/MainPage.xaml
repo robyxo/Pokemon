@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pokemon.MainPage"
              xmlns:vm="clr-namespace:Pokemon.ViewModels"
-             Title="List Pokémon">
+             Title="List Pokémon"
+             BackgroundColor="Red">
 
     <ContentPage.BindingContext>
         <vm:PokemonViewModel />

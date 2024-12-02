@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pokemon.PokemonDetailPage"
              Shell.NavBarIsVisible="False"
-             Title="PokemonDetailPage">
+             Title="PokemonDetailPage"
+             BackgroundColor="Red">
 
     <ContentPage.Content>
         <ScrollView>
